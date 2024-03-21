@@ -15,20 +15,20 @@ use Psr\Log\LoggerInterface;
 final class Main
 {
     private RateProvider $rateProvider;
-    private BinProvider $bitProvider;
+    private BinProvider $binProvider;
     private CommissionService $commissionService;
     private ResourceProvider $resourceService;
     private LoggerInterface $logger;
 
     public function __construct(
         RateProvider $rateProvider,
-        BinProvider $bitProvider,
+        BinProvider $binProvider,
         CommissionService $commissionService,
         ResourceProvider $resourceService,
         LoggerInterface $logger
     ) {
         $this->rateProvider = $rateProvider;
-        $this->bitProvider = $bitProvider;
+        $this->binProvider = $binProvider;
         $this->commissionService = $commissionService;
         $this->resourceService = $resourceService;
         $this->logger = $logger;
@@ -41,7 +41,7 @@ final class Main
 
             /** @var ResourceDTO $dto */
             foreach ($this->resourceService->getData() as $dto) {
-                $binDTO = $this->bitProvider->getData([$dto->getBin()]);
+                $binDTO = $this->binProvider->getData($dto->getBin());
 
                 echo $this->commissionService->calculate(
                     $binDTO->getCountryAbbreviation(),

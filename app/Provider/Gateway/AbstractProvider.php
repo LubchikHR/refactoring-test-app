@@ -19,14 +19,14 @@ abstract class AbstractProvider
         $this->logger = $logger;
     }
 
-    abstract public function getApiUrl(): string;
+    abstract protected function getApiUrl(): string;
 
-    public function request(array $query = []): ?array
+    public function request(): ?array
     {
         try {
             $response = $this->client->request(
                 'GET',
-                $this->getApiUrl() . '/' . array_shift($query),
+                $this->getApiUrl(),
             );
 
             if ($response->getStatusCode() === 200 && $response->getHeaders()) {

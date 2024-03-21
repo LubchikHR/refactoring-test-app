@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace app\Provider\Storage;
 
-use app\Provider\ProviderInterface;
 use app\Provider\DTO\ResourceDTO;
 
-class ResourceProvider implements ProviderInterface
+class ResourceProvider
 {
     private string $filePath;
 
@@ -16,7 +15,7 @@ class ResourceProvider implements ProviderInterface
         $this->filePath = $filePath;
     }
 
-    public function getData(array $params = []): iterable
+    public function getData(): iterable
     {
         $result = [];
 

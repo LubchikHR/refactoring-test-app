@@ -7,9 +7,8 @@ namespace app\Provider\Gateway;
 use app\Provider\DTO\RateDTO;
 use app\Provider\DTO\RateListDTO;
 use App\Provider\Exception\ProviderResponseException;
-use app\Provider\ProviderInterface;
 
-class RateProvider extends AbstractProvider implements ProviderInterface
+class RateProvider extends AbstractProvider
 {
     private const URL = 'https://api.monobank.ua/bank/currency';
 
@@ -27,7 +26,7 @@ class RateProvider extends AbstractProvider implements ProviderInterface
         826 => self::GBP,
     ];
 
-    public function getApiUrl(): string
+    protected function getApiUrl(): string
     {
         return self::URL;
     }
@@ -35,7 +34,7 @@ class RateProvider extends AbstractProvider implements ProviderInterface
     /**
      * @throws ProviderResponseException
      */
-    public function getData(array $params = []): RateListDTO
+    public function getData(): RateListDTO
     {
         $responseData = $this->request();
         $listDTO = new RateListDTO();

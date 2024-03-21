@@ -6,25 +6,32 @@ namespace app\Provider\Gateway;
 
 use app\Provider\DTO\BinDTO;
 use app\Provider\Exception\ProviderResponseException;
-use app\Provider\ProviderInterface;
 
-class BinProvider extends AbstractProvider implements ProviderInterface
+class BinProvider extends AbstractProvider
 {
     private const URL = 'https://lookup.binlist.net';
+    private int $bin;
 
-    public function getApiUrl(): string
+    protected function getApiUrl(): string
     {
-        return self::URL;
+        return self::URL . '/' . $this->bin;
     }
 
     /**
+     * @param int $bin
+     *
+     * @return BinDTO
      * @throws ProviderResponseException
      */
-    public function getData(array $params = []): BinDTO
+    public function getData(int $bin): BinDTO
     {
-        $responseData = $this->request($params);
+        $this->bin = $bin;
+        $responseData = $this->request();
 
-        if (is_null($responseData)) {
+        if (is_null($responseData)
+            || !isset($responseData['country']['alpha2'])
+            || is_null($responseData['country']['alpha2'])
+        ) {
             throw ProviderResponseException::exception(static::class);
         }
 
