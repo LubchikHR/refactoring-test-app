@@ -33,9 +33,6 @@ class RateProvider extends AbstractProvider implements ProviderInterface
     }
 
     /**
-     * @param array $params
-     *
-     * @return RateListDTO
      * @throws ProviderResponseException
      */
     public function getData(array $params = []): RateListDTO

@@ -18,9 +18,6 @@ class BinProvider extends AbstractProvider implements ProviderInterface
     }
 
     /**
-     * @param array $params
-     *
-     * @return BinDTO
      * @throws ProviderResponseException
      */
     public function getData(array $params = []): BinDTO

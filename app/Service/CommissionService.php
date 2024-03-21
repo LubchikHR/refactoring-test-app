@@ -14,14 +14,6 @@ class CommissionService
         'HU', 'IE', 'IT', 'LT', 'LU', 'LV', 'MT', 'NL', 'PO', 'PT', 'RO', 'SE', 'SI', 'SK',
     ];
 
-    /**
-     * @param string $country
-     * @param string $currency
-     * @param float  $rate
-     * @param float  $amount
-     *
-     * @return float
-     */
     public function calculate(string $country, string $currency, float $rate, float $amount): float
     {
         $percentByCountry = $this->isEuropeCountry($country)
