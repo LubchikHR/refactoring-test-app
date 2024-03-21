@@ -47,7 +47,7 @@ class BinProviderTest extends TestCase
             ->method('request')
             ->willReturn($responseMock);
 
-        $binDTO = $this->provider->getData(['123456']);
+        $binDTO = $this->provider->getData(123456);
         $this->assertInstanceOf(BinDTO::class, $binDTO);
         $this->assertSame('US', $binDTO->getCountryAbbreviation());
     }
@@ -60,6 +60,6 @@ class BinProviderTest extends TestCase
             ->willReturn($responseMock);
 
         $this->expectException(ProviderResponseException::class);
-        $this->provider->getData(['123456']);
+        $this->provider->getData(123456);
     }
 }

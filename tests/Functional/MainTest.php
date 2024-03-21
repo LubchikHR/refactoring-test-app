@@ -37,7 +37,7 @@ class MainTest extends TestCase
 
         $binProvider->expects($this->once())
             ->method('getData')
-            ->with([$resourceDTO->getBin()])
+            ->with($resourceDTO->getBin())
             ->willReturn(new BinDTO('US'));
 
         $commissionService->expects($this->once())
